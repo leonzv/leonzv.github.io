@@ -194,23 +194,31 @@
 							donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc 
 							orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
 							
-							<form method="post" action="form.php">
-								<div class="row 50%">
-									<div class="6u"><input type="text" name="name" placeholder="Name" /></div>
-									<div class="6u"><input type="text" name="email" placeholder="Email" /></div>
+						  <form
+							action="https://formspree.io/f/xnqlwdkl"
+							method="POST"
+						  >
+						    <div class="row 50%">
+							  <div class="6u">					
+							  	<input type="email" name="_replyto" placeholder="Email">								
+							  </div>
+							  <div class="6u">								
+									<input type="text" name="name" placeholder="Name" />
 								</div>
-								<div class="row 50%">
-									<div class="12u">
-										<textarea name="message" placeholder="Message"></textarea>
-									</div>
+							</div>			
+							<div class="row">
+								<div class="12u">		
+							 		 Your message:
+							 	 <textarea name="message"></textarea>							
 								</div>
-								<div class="row">
-									<div class="12u">
-										<input type="submit" value="Send Message" />
-									</div>
+							</div>
+							<!-- your other form fields go here -->
+							<div class="row">
+								<div class="12u">
+									<input type="submit" value="Send Message" />
 								</div>
-							</form>
-
+							</div>
+						  </form>
 						</div>
 					</section>
 			
