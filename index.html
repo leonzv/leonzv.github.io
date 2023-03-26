@@ -17,6 +17,7 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -27,9 +28,10 @@
 		<link rel="stylesheet" href="css/style.css"/>
 	</head>
 	<body>
+		<script src="js/scp.js"></script>
 
 		<!-- Header -->
-			<div id="header" class="skel-layers-fixed">
+		<div id="header" class="skel-layers-fixed">
 
 				<div class="top">
 
@@ -112,7 +114,7 @@
 								<div class="projetos">
 									<article class="item">
 										<h3>Bonibot</h3>
-										<a href="#" class="image fit"><img src="images/bonibot.png" alt="" /></a>
+										<a href="#" class="image fit"><img src="images/bonibot.png" alt="" id="bot_img" data-tilt/></a>
 										<header>
 										<p  class="text_projetos">Durante uma brincadeira entre amigos, tive a oportunidade de começar um bot no discord para uma comunidade de 10+ pessoas.<br> 
 										Utilizamos a API da Riot Games para obter informações sobre os jogadores e partidas.<br>
@@ -125,7 +127,7 @@
 									</article>
 									<article class="item">
 										<h3>Scoreboard App</h3>
-										<a href="#" class="image fit"><img src="images/scoreboard.png" alt="" id="scoreboard_img"/></a>
+										<a href="#" class="image fit"><img src="images/scoreboard.png" alt="" id="scoreboard_img" data-tilt/></a>
 										<header>
 											<p class="text_projetos">Aplicativo para contar placar de todo tipo de jogatina.<br>
 											Nele tem histórico placar e opção para resetar o placar.<br>
@@ -135,7 +137,7 @@
 									</article>
 									<article class="item">
 										<h3>Gerenciamento de escola (Administração)</h3>
-										<a href="#" class="image fit"><img src="images/django.png" alt="" id="django"/></a>
+										<a href="#" class="image fit"><img src="images/django.png" alt="" id="django_img" data-tilt/></a>
 										<header>
 											<p class="text_projetos">Utilizei django para criar um sistema de gerenciamento de escola.<br>
 											Nele é possível cadastrar alunos, professores, turmas, disciplinas, notas, faltas, etc.<br>
