@@ -200,7 +200,8 @@
 			.image img
 			{
 				display: block;
-				width: 100%;
+				width: 80%;
+				margin: auto;
 			}
 			
 			.image.avatar48
@@ -249,8 +250,8 @@
 
 	/* List */
 
-		ul
-		{
+		ul{
+			list-style: none;
 		}
 
 			ul.default
@@ -783,3 +784,18 @@
 			{
 				background-color: #e8edec;
 			}
+
+			.image.avatar48 img {
+				width: 78px;
+				height: 94px;
+			}
+
+@media screen and (max-width: 736px) {
+	/* header some */
+	#header {
+		display: none;
+	}
+	#main {
+		margin-left: 0;
+	}
+}
