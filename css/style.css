@@ -808,3 +808,15 @@
 	margin-left: 2%;
 	margin-right: 2%;
 }
+
+#scoreboard_img{
+	display: block;
+    width: 50%;
+    margin: auto;
+}
+
+#django{
+	display: block;
+    width: 100%;
+    margin: auto;
+}
