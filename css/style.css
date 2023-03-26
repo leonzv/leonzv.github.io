@@ -799,3 +799,12 @@
 		margin-left: 0;
 	}
 }
+
+.projetos{
+	width: 100%;
+}
+
+.text_projetos{
+	margin-left: 2%;
+	margin-right: 2%;
+}
