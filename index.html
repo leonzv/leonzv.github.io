@@ -34,7 +34,6 @@
             --font-main: 'JetBrains Mono', 'Fira Code', monospace;
         }
 
-        /* Reset e configurações base */
         * {
             box-sizing: border-box;
         }
@@ -54,7 +53,6 @@
             position: relative;
         }
 
-        /* Background pattern sutil */
         body::before {
             content: '';
             position: fixed;
@@ -77,12 +75,10 @@
             z-index: -1;
         }
 
-        /* Remover canvas matrix - muito distrativo */
         #matrix-bg {
             display: none;
         }
 
-        /* Overlay sutil apenas */
         .scanline-overlay {
             position: fixed;
             top: 0;
@@ -99,7 +95,6 @@
             opacity: 0.3;
         }
 
-        /* Container principal modernizado */
         .terminal-window {
             background: var(--bg-card);
             backdrop-filter: blur(8px);
@@ -111,7 +106,6 @@
             min-height: 90vh;
         }
 
-        /* Animações sutis */
         @keyframes blink {
 
             0%,
@@ -131,13 +125,11 @@
             font-weight: normal;
         }
 
-        /* Efeitos de texto mais sutis */
         .text-glow {
             text-shadow: var(--glow-intensity);
             color: var(--primary-green);
         }
 
-        /* Animações de entrada */
         .fade-in-section {
             opacity: 0;
             transform: translateY(30px);
@@ -150,7 +142,6 @@
             transform: translateY(0);
         }
 
-        /* Cards interativos mais sutis */
         .interactive-card {
             background: rgba(0, 210, 106, 0.02);
             border: 1px solid var(--border-green);
@@ -165,7 +156,6 @@
             transform: translateY(-2px);
         }
 
-        /* Links interativos mais limpos */
         .interactive-link {
             transition: all 0.3s ease;
             position: relative;
@@ -178,7 +168,6 @@
             transform: scale(1.02);
         }
 
-        /* Navegação modernizada */
         .nav-terminal {
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
@@ -186,7 +175,6 @@
             border-radius: 6px;
         }
 
-        /* Scrollbar customizada */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -204,7 +192,6 @@
             background: var(--dark-green);
         }
 
-        /* Responsividade melhorada */
         @media (max-width: 768px) {
             .terminal-window {
                 margin: 0.5rem;
@@ -288,7 +275,6 @@
 
         <header class="mb-12">
             <div class="bg-black/60 border border-green-500/30 rounded-lg p-6 font-mono">
-                <!-- Terminal header -->
                 <div class="flex items-center gap-2 mb-4 border-b border-green-500/20 pb-3">
                     <div class="flex gap-2">
                         <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
@@ -299,7 +285,6 @@
                     <i data-lucide="shield-check" class="w-4 h-4"></i>
                 </div>
 
-                <!-- Terminal content -->
                 <div class="space-y-2">
                     <div class="text-green-400 text-sm">$ whoami</div>
                     <div id="typing-header"
@@ -505,19 +490,16 @@
     </div>
 
     <script>
-        // Sistema de Portfólio simplificado e moderno
         class PortfolioSystem {
             constructor() {
                 this.init();
             }
 
             async init() {
-                // Inicializar ícones Lucide
                 if (typeof lucide !== 'undefined') {
                     lucide.createIcons();
                 }
 
-                // Inicializar módulos
                 this.initTypingEffect();
                 this.initScrollAnimations();
                 this.renderProjects();
@@ -526,7 +508,6 @@
                 console.log('%c✅ Portfolio System carregado com sucesso', 'color: #00d26a; font-weight: bold;');
             }
 
-            // Efeito de digitação corrigido e mais suave
             initTypingEffect() {
                 const element = document.getElementById('typing-header');
                 const messages = [
@@ -555,7 +536,6 @@
                             setTimeout(typeText, currentMessage.delay);
                         }, 500);
                     } else {
-                        // Mensagem final
                         element.innerHTML = `<span class="text-glow">${currentMessage.text}</span><span class="cursor">|</span>`;
                     }
                 };
@@ -563,7 +543,6 @@
                 setTimeout(typeText, 1000);
             }
 
-            // Animações de scroll suaves
             initScrollAnimations() {
                 const observerOptions = {
                     threshold: 0.1,
@@ -583,7 +562,6 @@
                 });
             }
 
-            // Projetos mais focados no perfil profissional
             renderProjects() {
                 const container = document.getElementById('projects-container');
                 const projects = [
@@ -660,13 +638,11 @@
 
                 container.innerHTML = projectsHTML;
 
-                // Reinicializar ícones
                 if (typeof lucide !== 'undefined') {
                     lucide.createIcons();
                 }
             }
 
-            // Scroll suave para navegação
             initSmoothScroll() {
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', (e) => {
@@ -683,7 +659,6 @@
             }
         }
 
-        // Inicialização quando DOM estiver pronto
         document.addEventListener('DOMContentLoaded', () => {
             new PortfolioSystem();
         });
