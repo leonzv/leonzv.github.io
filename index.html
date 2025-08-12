@@ -553,38 +553,42 @@
                 const container = document.getElementById('projects-container');
                 const projects = [
                     {
-                        name: "🤖 BoniBot Discord",
-                        description: "Bot completo para Discord com sistema de música, comandos personalizados e dashboard web. Auto-hospedado com uptime 24/7 e integração com Spotify.",
+                        name: "Bonibot",
+                        icon: "bot",
+                        description: "Bot completo para Discord com sistema de música e comandos personalizados. Auto-hospedado com uptime 24/7 e integração com Spotify.",
                         tags: ["Node.js", "Discord.js", "Express", "PostgreSQL", "ffmpeg"],
-                        link: "https://github.com/leonzv",
+                        link: "#",
                         status: "Ativo"
                     },
                     {
-                        name: "💼 Sistema ERP - ATM",
-                        description: "Portal administrativo interno para gestão de carregadores de veículos elétricos. Interface moderna com monitoramento em tempo real.",
-                        tags: ["React", "Node.js", "PostgreSQL", "Socket.io"],
-                        link: "#",
-                        status: "Produção"
+                        name: "Landing Page (HMC)",
+                        icon: "layout",
+                        description: "Landing page em homenagem a carreira de Hamilton Machado Dias no kickboxing.",
+                        tags: ["HTML", "CSS", "JavaScript"],
+                        link: "https://hmckickboxingbio.netlify.app",
+                        status: "Ativo"
                     },
                     {
-                        name: "� Plataforma de Análise - Mindtek",
-                        description: "Sistema web para busca e inspeção de produtos e fornecedores. Implementação de filtros avançados e relatórios automatizados.",
-                        tags: ["Vue.js", "Python", "MongoDB", "Elasticsearch"],
-                        link: "#",
-                        status: "Finalizado"
+                        name: "Landing Page (FPV)",
+                        icon: "layout",
+                        description: "Landing page para a equipe de Freitas Provensi Advocacia, com informações sobre serviços, equipe e contato.",
+                        tags: ["HTML", "CSS", "JavaScript"],
+                        link: "https://freitasprovensi.netlify.app/",
+                        status: "Em expansão"
                     },
                     {
-                        name: "📱 Apps para Restaurantes",
-                        description: "Aplicações mobile para delivery e gestão de pedidos. Interface intuitiva com integração a sistemas de pagamento.",
-                        tags: ["React Native", "Firebase", "Stripe API", "Push Notifications"],
+                        name: "ATIC",
+                        icon: "truck",
+                        description: "Aplicativo que conecta serviços e caminhoneiros, facilitando a comunicação e o gerenciamento de cargas, cuidando de toda a logística envolvida, incluindo rotas, prazos e pagamentos.",
+                        tags: ["React", "React Native", "NestJS", "PostgreSQL"],
                         link: "#",
-                        status: "Finalizado"
+                        status: "Em desenvolvimento"
                     }
                 ];
 
                 const statusColors = {
                     'Ativo': 'text-green-400',
-                    'Produção': 'text-blue-400',
+                    'Em expansão': 'text-blue-400',
                     'Finalizado': 'text-gray-400',
                     'Em desenvolvimento': 'text-yellow-400'
                 };
@@ -598,7 +602,10 @@
                     return `
                         <div class="interactive-card p-6 rounded-lg h-full flex flex-col">
                             <div class="flex items-center justify-between mb-3">
-                                <h3 class="font-bold text-lg text-glow">${project.name}</h3>
+                                <h3 class="font-bold text-lg text-glow flex items-center gap-2">
+                                    <i data-lucide="${project.icon}" class="w-5 h-5"></i>
+                                    ${project.name}
+                                </h3>
                                 <span class="text-xs ${statusColor} font-medium px-2 py-1 rounded-full bg-current/10">${project.status}</span>
                             </div>
                             <p class="text-gray-300 mb-4 flex-grow text-sm leading-relaxed">${project.description}</p>
