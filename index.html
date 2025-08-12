@@ -169,7 +169,111 @@
             transform: scale(1.02);
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border-green);
+            color: var(--primary-green);
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            border-color: var(--primary-green);
+            background: rgba(0, 210, 106, 0.1);
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid var(--border-green);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-drawer.open {
+            right: 0;
+        }
+
+        .mobile-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-green);
+        }
+
+        .drawer-close {
+            background: transparent;
+            border: 1px solid var(--border-green);
+            color: var(--primary-green);
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .drawer-close:hover {
+            border-color: var(--primary-green);
+            background: rgba(0, 210, 106, 0.1);
+        }
+
+        .drawer-nav {
+            padding: 1rem;
+        }
+
+        .drawer-nav a {
+            display: block;
+            padding: 12px 16px;
+            margin: 4px 0;
+            color: var(--text-gray);
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-family: var(--font-main);
+        }
+
+        .drawer-nav a:hover {
+            background: rgba(0, 210, 106, 0.1);
+            border-color: var(--border-green);
+            color: var(--primary-green);
+        }
+
         .language-switch {
+            padding: 1rem;
+            border-top: 1px solid var(--border-green);
+            margin-top: auto;
+        }
+
+        .language-switch-desktop {
             position: fixed;
             top: 20px;
             right: 20px;
@@ -182,7 +286,7 @@
             gap: 4px;
         }
 
-        .language-switch button {
+        .language-switch-desktop button {
             background: transparent;
             border: 1px solid transparent;
             border-radius: 4px;
@@ -193,10 +297,50 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            color: var(--text-gray);
+        }
+
+        .language-switch-desktop button:hover {
+            border-color: rgba(0, 210, 106, 0.5);
+            background: rgba(0, 210, 106, 0.1);
+        }
+
+        .language-switch-desktop button.active {
+            background: rgba(0, 210, 106, 0.2);
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .language-switch-title {
+            font-size: 0.875rem;
+            color: var(--text-gray-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .language-switch-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .language-switch button {
+            background: transparent;
+            border: 1px solid var(--border-green);
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-gray);
+            flex: 1;
+            justify-content: center;
         }
 
         .language-switch button:hover {
-            border-color: rgba(0, 210, 106, 0.5);
+            border-color: var(--primary-green);
             background: rgba(0, 210, 106, 0.1);
         }
 
@@ -238,42 +382,44 @@
             }
 
             .nav-terminal {
-                flex-direction: column;
-                gap: 1rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
                 padding: 1rem;
-                text-align: center;
             }
 
             .nav-terminal>div:first-child {
+                justify-content: flex-start;
+            }
+
+            .nav-terminal>div:nth-child(2) {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
                 justify-content: center;
-                margin-bottom: 0.5rem;
             }
 
-            .nav-terminal>div:last-child {
-                justify-content: center;
-                gap: 0.5rem;
-            }
-
-            .nav-terminal a {
-                font-size: 0.75rem;
-                padding: 0.5rem 0.75rem;
-                white-space: nowrap;
-            }
-
-            .language-switch {
-                top: 10px;
-                right: 10px;
-                padding: 6px;
-            }
-
-            .language-switch button {
-                padding: 3px 6px;
-                font-size: 0.7rem;
+            .language-switch-desktop {
+                display: none;
             }
 
             #typing-header {
                 font-size: 1.25rem !important;
                 min-height: 120px !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .mobile-drawer,
+            .mobile-drawer-overlay {
+                display: none;
             }
         }
 
@@ -287,24 +433,19 @@
                 padding: 0.75rem;
             }
 
-            .nav-terminal a {
+            .mobile-drawer {
+                max-width: 100%;
+            }
+
+            .language-switch-desktop {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+            }
+
+            .language-switch-desktop button {
+                padding: 3px 6px;
                 font-size: 0.7rem;
-                padding: 0.4rem 0.6rem;
-            }
-
-            .nav-terminal>div:last-child {
-                gap: 0.25rem;
-            }
-
-            .language-switch {
-                top: 8px;
-                right: 8px;
-                padding: 4px;
-            }
-
-            .language-switch button {
-                padding: 2px 4px;
-                font-size: 0.65rem;
             }
         }
     </style>
@@ -312,13 +453,50 @@
 
 <body class="p-4 sm:p-8">
 
-    <div class="language-switch">
+    <!-- Desktop Language Switch -->
+    <div class="language-switch-desktop">
         <button id="lang-en" class="active" title="English">
             🇺🇸 EN
         </button>
         <button id="lang-pt" title="Português">
             🇧🇷 PT
         </button>
+    </div>
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="mobile-drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <div class="flex items-center gap-2">
+                <i data-lucide="terminal" class="w-4 h-4 text-green-400"></i>
+                <span class="text-glow font-medium">Menu</span>
+            </div>
+            <button class="drawer-close" id="drawer-close">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <nav class="drawer-nav">
+            <a href="#whois" data-i18n="nav.about">./about</a>
+            <a href="#arsenal" data-i18n="nav.skills">./skills</a>
+            <a href="#projetos" data-i18n="nav.projects">./projects</a>
+            <a href="#experiencia" data-i18n="nav.experience">./experience</a>
+            <a href="#contato" data-i18n="nav.contact">./contact</a>
+        </nav>
+
+        <div class="language-switch">
+            <div class="language-switch-title" data-i18n="language.title">Language / Idioma</div>
+            <div class="language-switch-buttons">
+                <button id="lang-en-mobile" class="active" title="English">
+                    🇺🇸 EN
+                </button>
+                <button id="lang-pt-mobile" title="Português">
+                    🇧🇷 PT
+                </button>
+            </div>
+        </div>
     </div>
 
     <canvas id="matrix-bg"></canvas>
@@ -345,6 +523,9 @@
                 <a href="#contato" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
                     data-i18n="nav.contact">./contact</a>
             </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
         </nav>
 
         <header class="mb-12">
@@ -582,6 +763,9 @@
                     experience: "./experience",
                     contact: "./contact"
                 },
+                language: {
+                    title: "Language"
+                },
                 typing: {
                     systemStarted: "System started...",
                     checkingCredentials: "Checking credentials...",
@@ -654,6 +838,9 @@
                     projects: "./projetos",
                     experience: "./experiencia",
                     contact: "./contato"
+                },
+                language: {
+                    title: "Idioma"
                 },
                 typing: {
                     systemStarted: "Sistema iniciado...",
@@ -737,20 +924,39 @@
                 this.initScrollAnimations();
                 this.renderProjects();
                 this.initSmoothScroll();
-
+                this.initMobileMenu();
             }
 
             initLanguageSystem() {
+                // Desktop buttons (hidden on mobile)
                 const langEnBtn = document.getElementById('lang-en');
                 const langPtBtn = document.getElementById('lang-pt');
 
+                // Mobile buttons (in drawer)
+                const langEnMobileBtn = document.getElementById('lang-en-mobile');
+                const langPtMobileBtn = document.getElementById('lang-pt-mobile');
+
                 this.updateLanguageButtons();
 
-                langEnBtn.addEventListener('click', () => {
+                // Desktop handlers
+                if (langEnBtn) {
+                    langEnBtn.addEventListener('click', () => {
+                        this.changeLanguage('en');
+                    });
+                }
+
+                if (langPtBtn) {
+                    langPtBtn.addEventListener('click', () => {
+                        this.changeLanguage('pt');
+                    });
+                }
+
+                // Mobile handlers
+                langEnMobileBtn.addEventListener('click', () => {
                     this.changeLanguage('en');
                 });
 
-                langPtBtn.addEventListener('click', () => {
+                langPtMobileBtn.addEventListener('click', () => {
                     this.changeLanguage('pt');
                 });
 
@@ -758,11 +964,23 @@
             }
 
             updateLanguageButtons() {
+                // Desktop buttons
                 const langEnBtn = document.getElementById('lang-en');
                 const langPtBtn = document.getElementById('lang-pt');
 
-                langEnBtn.classList.toggle('active', this.currentLanguage === 'en');
-                langPtBtn.classList.toggle('active', this.currentLanguage === 'pt');
+                // Mobile buttons
+                const langEnMobileBtn = document.getElementById('lang-en-mobile');
+                const langPtMobileBtn = document.getElementById('lang-pt-mobile');
+
+                // Update desktop buttons if they exist
+                if (langEnBtn && langPtBtn) {
+                    langEnBtn.classList.toggle('active', this.currentLanguage === 'en');
+                    langPtBtn.classList.toggle('active', this.currentLanguage === 'pt');
+                }
+
+                // Update mobile buttons
+                langEnMobileBtn.classList.toggle('active', this.currentLanguage === 'en');
+                langPtMobileBtn.classList.toggle('active', this.currentLanguage === 'pt');
             }
 
             changeLanguage(lang) {
@@ -774,6 +992,42 @@
                 setTimeout(() => {
                     this.initTypingEffect();
                 }, 100);
+            }
+
+            initMobileMenu() {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileDrawer = document.getElementById('mobile-drawer');
+                const drawerOverlay = document.getElementById('drawer-overlay');
+                const drawerClose = document.getElementById('drawer-close');
+                const drawerLinks = document.querySelectorAll('.drawer-nav a');
+
+                const openDrawer = () => {
+                    mobileDrawer.classList.add('open');
+                    drawerOverlay.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                };
+
+                const closeDrawer = () => {
+                    mobileDrawer.classList.remove('open');
+                    drawerOverlay.classList.remove('open');
+                    document.body.style.overflow = '';
+                };
+
+                mobileMenuBtn.addEventListener('click', openDrawer);
+                drawerClose.addEventListener('click', closeDrawer);
+                drawerOverlay.addEventListener('click', closeDrawer);
+
+                // Close drawer when clicking on navigation links
+                drawerLinks.forEach(link => {
+                    link.addEventListener('click', closeDrawer);
+                });
+
+                // Close drawer on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+                        closeDrawer();
+                    }
+                });
             } updateContent() {
                 const elements = document.querySelectorAll('[data-i18n]');
                 elements.forEach(element => {
