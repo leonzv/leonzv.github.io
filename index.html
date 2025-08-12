@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio // Leonardo Vinicius Sanchez Dias</title>
+    <title data-i18n="title">Portfolio // Leonardo Vinicius Sanchez Dias</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <link rel="icon" type="image/svg+xml" href="./favicon-16.svg" sizes="16x16">
     <link rel="apple-touch-icon" href="./favicon.svg" sizes="180x180">
@@ -159,13 +159,51 @@
         .interactive-link {
             transition: all 0.3s ease;
             position: relative;
+            color: var(--primary-green);
         }
 
         .interactive-link:hover {
-            background: var(--primary-green);
-            color: var(--bg-black);
-            text-shadow: none;
+            background: rgba(0, 210, 106, 0.15);
+            color: var(--primary-green);
+            text-shadow: var(--glow-intensity);
             transform: scale(1.02);
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(0, 210, 106, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .language-switch button {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .language-switch button:hover {
+            border-color: rgba(0, 210, 106, 0.5);
+            background: rgba(0, 210, 106, 0.1);
+        }
+
+        .language-switch button.active {
+            background: rgba(0, 210, 106, 0.2);
+            border-color: var(--primary-green);
+            color: var(--primary-green);
         }
 
         .nav-terminal {
@@ -206,19 +244,31 @@
                 text-align: center;
             }
 
-            .nav-terminal .flex:first-child {
+            .nav-terminal>div:first-child {
                 justify-content: center;
+                margin-bottom: 0.5rem;
             }
 
-            .nav-terminal .flex:last-child {
-                flex-wrap: wrap;
+            .nav-terminal>div:last-child {
                 justify-content: center;
                 gap: 0.5rem;
             }
 
-            .nav-terminal .flex:last-child a {
+            .nav-terminal a {
                 font-size: 0.75rem;
                 padding: 0.5rem 0.75rem;
+                white-space: nowrap;
+            }
+
+            .language-switch {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+            }
+
+            .language-switch button {
+                padding: 3px 6px;
+                font-size: 0.7rem;
             }
 
             #typing-header {
@@ -237,15 +287,39 @@
                 padding: 0.75rem;
             }
 
-            .nav-terminal .flex:last-child a {
+            .nav-terminal a {
                 font-size: 0.7rem;
                 padding: 0.4rem 0.6rem;
+            }
+
+            .nav-terminal>div:last-child {
+                gap: 0.25rem;
+            }
+
+            .language-switch {
+                top: 8px;
+                right: 8px;
+                padding: 4px;
+            }
+
+            .language-switch button {
+                padding: 2px 4px;
+                font-size: 0.65rem;
             }
         }
     </style>
 </head>
 
 <body class="p-4 sm:p-8">
+
+    <div class="language-switch">
+        <button id="lang-en" class="active" title="English">
+            🇺🇸 EN
+        </button>
+        <button id="lang-pt" title="Português">
+            🇧🇷 PT
+        </button>
+    </div>
 
     <canvas id="matrix-bg"></canvas>
     <div class="scanline-overlay"></div>
@@ -259,17 +333,17 @@
                 <span class="text-gray-400">~</span>
                 <span class="text-glow">$</span>
             </div>
-            <div class="flex gap-6 text-sm font-medium">
-                <a href="#whois"
-                    class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all">./whois</a>
-                <a href="#arsenal"
-                    class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all">./skills</a>
-                <a href="#projetos"
-                    class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all">./projects</a>
-                <a href="#experiencia"
-                    class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all">./experience</a>
-                <a href="#contato"
-                    class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all">./contact</a>
+            <div class="flex gap-4 text-sm font-medium flex-wrap justify-center">
+                <a href="#whois" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
+                    data-i18n="nav.about">./about</a>
+                <a href="#arsenal" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
+                    data-i18n="nav.skills">./skills</a>
+                <a href="#projetos" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
+                    data-i18n="nav.projects">./projects</a>
+                <a href="#experiencia" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
+                    data-i18n="nav.experience">./experience</a>
+                <a href="#contato" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
+                    data-i18n="nav.contact">./contact</a>
             </div>
         </nav>
 
@@ -298,24 +372,24 @@
             <section id="whois" class="mb-16 fade-in-section">
                 <div class="flex items-center gap-3 mb-6">
                     <i data-lucide="user-search" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow">SOBRE MIM</h2>
+                    <h2 class="text-xl font-bold text-glow" data-i18n="about.title">ABOUT ME</h2>
                 </div>
                 <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        Desde pequeno, sempre me envolvi com tecnologia, resolvendo problemas e criando soluções, para
-                        eu mesmo ou para os outros. Dessa maneira, aprendi que eu gosto de resolver problemas e ajudar,
-                        consequentemente me inserindo no mundo do TI.
+                    <p class="text-gray-300 leading-relaxed mb-4" data-i18n="about.description1">
+                        Since childhood, I've always been involved with technology, solving problems and creating
+                        solutions,
+                        for myself or for others. This way, I learned that I enjoy solving problems and helping others,
+                        consequently inserting myself into the IT world.
                     </p>
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        Desenvolvedor Full-Stack com mais de 5 anos de experiência criando soluções web e mobile
+                    <p class="text-gray-300 leading-relaxed mb-4" data-i18n="about.description2">
+                        Full-Stack Developer with over 5 years of experience creating robust web and mobile solutions.
                         robustas.
                         Especializado em JavaScript/TypeScript, React, Node.js e Python (Django).
                     </p>
-                    <p class="text-gray-300 leading-relaxed">
-                        Atualmente trabalho na <span class="text-green-400 font-semibold">ATM
-                            Outsourcing/EVS</span>, onde desenvolvimento
-                        sistemas para carregadores de veículos elétricos e desenvolvimento de um sistema de
-                        gerenciamento mobile (MDM).
+                    <p class="text-gray-300 leading-relaxed" data-i18n="about.description3">
+                        Currently working at <span class="text-green-400 font-semibold">ATM
+                            Outsourcing/EVS</span>, where I develop
+                        systems for electric vehicle chargers and develop a mobile device management system (MDM).
                     </p>
                 </div>
             </section>
@@ -323,13 +397,13 @@
             <section id="arsenal" class="mb-16 fade-in-section">
                 <div class="flex items-center gap-3 mb-6">
                     <i data-lucide="cpu" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow">HABILIDADES TÉCNICAS</h2>
+                    <h2 class="text-xl font-bold text-glow" data-i18n="skills.title">TECHNICAL SKILLS</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="interactive-card p-6 rounded-lg">
                         <div class="flex items-center gap-2 mb-3">
                             <i data-lucide="code" class="w-4 h-4"></i>
-                            <h3 class="font-bold text-lg">Frontend</h3>
+                            <h3 class="font-bold text-lg" data-i18n="skills.frontend">Frontend</h3>
                         </div>
                         <ul class="text-gray-300 space-y-2">
                             <li><span class="text-green-400">•</span> JavaScript ES6+, TypeScript</li>
@@ -342,7 +416,7 @@
                     <div class="interactive-card p-6 rounded-lg">
                         <div class="flex items-center gap-2 mb-3">
                             <i data-lucide="server" class="w-4 h-4"></i>
-                            <h3 class="font-bold text-lg">Backend</h3>
+                            <h3 class="font-bold text-lg" data-i18n="skills.backend">Backend</h3>
                         </div>
                         <ul class="text-gray-300 space-y-2">
                             <li><span class="text-green-400">•</span> Node.js, Express</li>
@@ -355,7 +429,7 @@
                     <div class="interactive-card p-6 rounded-lg">
                         <div class="flex items-center gap-2 mb-3">
                             <i data-lucide="terminal" class="w-4 h-4"></i>
-                            <h3 class="font-bold text-lg">DevOps & Ferramentas</h3>
+                            <h3 class="font-bold text-lg" data-i18n="skills.devops">DevOps & Tools</h3>
                         </div>
                         <ul class="text-gray-300 space-y-2">
                             <li><span class="text-green-400">•</span> Docker, Git/GitHub</li>
@@ -369,7 +443,7 @@
             <section id="projetos" class="mb-16 fade-in-section">
                 <div class="flex items-center gap-3 mb-6">
                     <i data-lucide="folder-code" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow">PROJETOS DESENVOLVIDOS</h2>
+                    <h2 class="text-xl font-bold text-glow" data-i18n="projects.title">DEVELOPED PROJECTS</h2>
                 </div>
                 <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 </div>
@@ -378,7 +452,7 @@
             <section id="experiencia" class="mb-16 fade-in-section">
                 <div class="flex items-center gap-3 mb-6">
                     <i data-lucide="briefcase" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow">EXPERIÊNCIA PROFISSIONAL</h2>
+                    <h2 class="text-xl font-bold text-glow" data-i18n="experience.title">PROFESSIONAL EXPERIENCE</h2>
                 </div>
                 <div class="relative border-l-2 border-green-700/50 pl-8 space-y-12">
                     <div class="relative">
@@ -387,16 +461,21 @@
                             <div class="h-2 w-2 bg-black rounded-full animate-pulse"></div>
                         </div>
                         <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                            <p class="text-sm text-green-400 font-semibold mb-2">Maio 2023 - Presente</p>
-                            <h3 class="font-bold text-lg mb-3 text-glow">Desenvolvedor Full Stack @ ATM
+                            <p class="text-sm text-green-400 font-semibold mb-2" data-i18n="experience.period1">May 2023
+                                - Present</p>
+                            <h3 class="font-bold text-lg mb-3 text-glow" data-i18n="experience.title1">Full Stack
+                                Developer @ ATM
                                 Outsourcing/EVS</h3>
                             <ul class="text-gray-300 space-y-2">
-                                <li><span class="text-green-400">▸</span> Manutenção e modernização do portal
-                                    administrativo interno</li>
-                                <li><span class="text-green-400">▸</span> Desenvolvimento de features para
-                                    carregadores de veículos elétricos</li>
-                                <li><span class="text-green-400">▸</span> Integração de sistemas de monitoramento e
-                                    controle</li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc1.item1">Maintenance and modernization of internal
+                                        administrative portal</span></li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc1.item2">Feature development for electric vehicle
+                                        chargers</span></li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc1.item3">Integration of monitoring and control
+                                        systems</span></li>
                             </ul>
                         </div>
                     </div>
@@ -407,14 +486,20 @@
                             <div class="h-2 w-2 bg-black rounded-full"></div>
                         </div>
                         <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                            <p class="text-sm text-green-400 font-semibold mb-2">Julho 2021 - Março 2023</p>
-                            <h3 class="font-bold text-lg mb-3 text-glow">Desenvolvedor Full Stack @ Mindtek</h3>
+                            <p class="text-sm text-green-400 font-semibold mb-2" data-i18n="experience.period2">July
+                                2021 - March 2023</p>
+                            <h3 class="font-bold text-lg mb-3 text-glow" data-i18n="experience.title2">Full Stack
+                                Developer @ Mindtek</h3>
                             <ul class="text-gray-300 space-y-2">
-                                <li><span class="text-green-400">▸</span> Desenvolvimento de plataforma web para
-                                    análise de fornecedores</li>
-                                <li><span class="text-green-400">▸</span> Implementação de sistema de busca e
-                                    inspeção de produtos</li>
-                                <li><span class="text-green-400">▸</span> Manutenção de servidores e infraestrutura</li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc2.item1">Development of web platform for supplier
+                                        analysis</span></li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc2.item2">Implementation of product search and
+                                        inspection system</span></li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc2.item3">Server and infrastructure maintenance</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -425,13 +510,16 @@
                             <div class="h-2 w-2 bg-black rounded-full"></div>
                         </div>
                         <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                            <p class="text-sm text-green-400 font-semibold mb-2">Fevereiro 2021 - Junho 2021</p>
-                            <h3 class="font-bold text-lg mb-3 text-glow">Desenvolvedor Mobile/Full Stack @ Rupture
-                                Software</h3>
+                            <p class="text-sm text-green-400 font-semibold mb-2" data-i18n="experience.period3">February
+                                2021 - June 2021</p>
+                            <h3 class="font-bold text-lg mb-3 text-glow" data-i18n="experience.title3">Mobile/Full Stack
+                                Developer @ Rupture Software</h3>
                             <ul class="text-gray-300 space-y-2">
-                                <li><span class="text-green-400">▸</span> Desenvolvimento de aplicativos </li>
-                                <li><span class="text-green-400">▸</span> Criação de websites promocionais
-                                    responsivos</li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc3.item1">Mobile application development</span></li>
+                                <li><span class="text-green-400">▸</span> <span
+                                        data-i18n="experience.desc3.item2">Creation of responsive promotional
+                                        websites</span></li>
                             </ul>
                         </div>
                     </div>
@@ -441,7 +529,7 @@
             <section id="contato" class="mb-12 fade-in-section">
                 <div class="flex items-center gap-3 mb-6">
                     <i data-lucide="mail" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow">CANAIS DE COMUNICAÇÃO</h2>
+                    <h2 class="text-xl font-bold text-glow" data-i18n="contact.title">COMMUNICATION CHANNELS</h2>
                 </div>
                 <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -474,16 +562,168 @@
         <footer class="text-center text-gray-500 mt-16 fade-in-section border-t border-green-500/20 pt-8">
             <div class="flex items-center justify-center gap-2 mb-4">
                 <i data-lucide="terminal" class="w-4 h-4"></i>
-                <p class="font-mono">TRANSMISSÃO FINALIZADA</p>
+                <p class="font-mono" data-i18n="footer.transmission">TRANSMISSION COMPLETE</p>
             </div>
-            <p class="text-xs">Leonardo Vinicius Sanchez Dias © 2025 | Todos os direitos reservados</p>
-            <p class="text-xs mt-2 text-green-400">Sistema operacional: Portfolio OS v2.0 | Uptime: ∞</p>
+            <p class="text-xs" data-i18n="footer.copyright">Leonardo Vinicius Sanchez Dias © 2025 | All rights reserved
+            </p>
+            <p class="text-xs mt-2 text-green-400" data-i18n="footer.system">Operating System: Portfolio OS v2.0 |
+                Uptime: ∞</p>
         </footer>
     </div>
 
     <script>
+        const translations = {
+            en: {
+                title: "Portfolio // Leonardo Vinicius Sanchez Dias",
+                nav: {
+                    about: "./about",
+                    skills: "./skills",
+                    projects: "./projects",
+                    experience: "./experience",
+                    contact: "./contact"
+                },
+                typing: {
+                    systemStarted: "System started...",
+                    checkingCredentials: "Checking credentials...",
+                    accessGranted: "Access granted ✓",
+                    greeting: "Hello! I'm Leonardo Vinicius"
+                },
+                about: {
+                    title: "ABOUT ME",
+                    description1: "Since childhood, I've always been involved with technology, solving problems and creating solutions, for myself or for others. This way, I learned that I enjoy solving problems and helping others, consequently inserting myself into the IT world.",
+                    description2: "Full-Stack Developer with over 5 years of experience creating robust web and mobile solutions. Specialized in JavaScript/TypeScript, React, Node.js and Python (Django).",
+                    description3: "Currently working at <span class=\"text-green-400 font-semibold\">ATM Outsourcing/EVS</span>, where I develop systems for electric vehicle chargers and develop a mobile device management system (MDM)."
+                },
+                skills: {
+                    title: "TECHNICAL SKILLS",
+                    frontend: "Frontend",
+                    backend: "Backend",
+                    devops: "DevOps & Tools"
+                },
+                projects: {
+                    title: "DEVELOPED PROJECTS",
+                    botDescription: "Complete Discord bot with music system, custom commands and web dashboard. Self-hosted with 24/7 uptime and Spotify integration.",
+                    erpDescription: "Internal administrative portal for electric vehicle charger management. Modern interface with real-time monitoring.",
+                    analysisDescription: "Web system for product and supplier search and inspection. Implementation of advanced filters and automated reports.",
+                    restaurantDescription: "Mobile applications for delivery and order management. Intuitive interface with payment system integration.",
+                    status: {
+                        active: "Active",
+                        production: "Production",
+                        finished: "Finished"
+                    },
+                    viewProject: "View project",
+                    private: "Private"
+                },
+                experience: {
+                    title: "PROFESSIONAL EXPERIENCE",
+                    period1: "May 2023 - Present",
+                    title1: "Full Stack Developer @ ATM Outsourcing/EVS",
+                    desc1: {
+                        item1: "Maintenance and modernization of internal administrative portal",
+                        item2: "Feature development for electric vehicle chargers",
+                        item3: "Integration of monitoring and control systems"
+                    },
+                    period2: "July 2021 - March 2023",
+                    title2: "Full Stack Developer @ Mindtek",
+                    desc2: {
+                        item1: "Development of web platform for supplier analysis",
+                        item2: "Implementation of product search and inspection system",
+                        item3: "Server and infrastructure maintenance"
+                    },
+                    period3: "February 2021 - June 2021",
+                    title3: "Mobile/Full Stack Developer @ Rupture Software",
+                    desc3: {
+                        item1: "Mobile application development",
+                        item2: "Creation of responsive promotional websites"
+                    }
+                },
+                contact: {
+                    title: "COMMUNICATION CHANNELS"
+                },
+                footer: {
+                    transmission: "TRANSMISSION COMPLETE",
+                    copyright: "Leonardo Vinicius Sanchez Dias © 2025 | All rights reserved",
+                    system: "Operating System: Portfolio OS v2.0 | Uptime: ∞"
+                }
+            },
+            pt: {
+                title: "Portfólio // Leonardo Vinicius Sanchez Dias",
+                nav: {
+                    about: "./sobre",
+                    skills: "./habilidades",
+                    projects: "./projetos",
+                    experience: "./experiencia",
+                    contact: "./contato"
+                },
+                typing: {
+                    systemStarted: "Sistema iniciado...",
+                    checkingCredentials: "Verificando credenciais...",
+                    accessGranted: "Acesso autorizado ✓",
+                    greeting: "Olá! Eu sou Leonardo Vinicius"
+                },
+                about: {
+                    title: "SOBRE MIM",
+                    description1: "Desde pequeno, sempre me envolvi com tecnologia, resolvendo problemas e criando soluções, para eu mesmo ou para os outros. Dessa maneira, aprendi que eu gosto de resolver problemas e ajudar, consequentemente me inserindo no mundo do TI.",
+                    description2: "Desenvolvedor Full-Stack com mais de 5 anos de experiência criando soluções web e mobile robustas. Especializado em JavaScript/TypeScript, React, Node.js e Python (Django).",
+                    description3: "Atualmente trabalho na <span class=\"text-green-400 font-semibold\">ATM Outsourcing/EVS</span>, onde desenvolvo sistemas para carregadores de veículos elétricos e desenvolvo um sistema de gerenciamento mobile (MDM)."
+                },
+                skills: {
+                    title: "HABILIDADES TÉCNICAS",
+                    frontend: "Frontend",
+                    backend: "Backend",
+                    devops: "DevOps & Ferramentas"
+                },
+                projects: {
+                    title: "PROJETOS DESENVOLVIDOS",
+                    botDescription: "Bot completo para Discord com sistema de música, comandos personalizados e dashboard web. Auto-hospedado com uptime 24/7 e integração com Spotify.",
+                    erpDescription: "Portal administrativo interno para gestão de carregadores de veículos elétricos. Interface moderna com monitoramento em tempo real.",
+                    analysisDescription: "Sistema web para busca e inspeção de produtos e fornecedores. Implementação de filtros avançados e relatórios automatizados.",
+                    restaurantDescription: "Aplicações mobile para delivery e gestão de pedidos. Interface intuitiva com integração a sistemas de pagamento.",
+                    status: {
+                        active: "Ativo",
+                        production: "Produção",
+                        finished: "Finalizado"
+                    },
+                    viewProject: "Ver projeto",
+                    private: "Privado"
+                },
+                experience: {
+                    title: "EXPERIÊNCIA PROFISSIONAL",
+                    period1: "Maio 2023 - Presente",
+                    title1: "Desenvolvedor Full Stack @ ATM Outsourcing/EVS",
+                    desc1: {
+                        item1: "Manutenção e modernização do portal administrativo interno",
+                        item2: "Desenvolvimento de features para carregadores de veículos elétricos",
+                        item3: "Integração de sistemas de monitoramento e controle"
+                    },
+                    period2: "Julho 2021 - Março 2023",
+                    title2: "Desenvolvedor Full Stack @ Mindtek",
+                    desc2: {
+                        item1: "Desenvolvimento de plataforma web para análise de fornecedores",
+                        item2: "Implementação de sistema de busca e inspeção de produtos",
+                        item3: "Manutenção de servidores e infraestrutura"
+                    },
+                    period3: "Fevereiro 2021 - Junho 2021",
+                    title3: "Desenvolvedor Mobile/Full Stack @ Rupture Software",
+                    desc3: {
+                        item1: "Desenvolvimento de aplicativos",
+                        item2: "Criação de websites promocionais responsivos"
+                    }
+                },
+                contact: {
+                    title: "CANAIS DE COMUNICAÇÃO"
+                },
+                footer: {
+                    transmission: "TRANSMISSÃO FINALIZADA",
+                    copyright: "Leonardo Vinicius Sanchez Dias © 2025 | Todos os direitos reservados",
+                    system: "Sistema operacional: Portfolio OS v2.0 | Uptime: ∞"
+                }
+            }
+        };
+
         class PortfolioSystem {
             constructor() {
+                this.currentLanguage = 'en'; // Padrão inglês
                 this.init();
             }
 
@@ -492,22 +732,87 @@
                     lucide.createIcons();
                 }
 
+                this.initLanguageSystem();
                 this.initTypingEffect();
                 this.initScrollAnimations();
                 this.renderProjects();
                 this.initSmoothScroll();
 
-                console.log('%c✅ Portfolio System carregado com sucesso', 'color: #00d26a; font-weight: bold;');
+            }
+
+            initLanguageSystem() {
+                const langEnBtn = document.getElementById('lang-en');
+                const langPtBtn = document.getElementById('lang-pt');
+
+                this.updateLanguageButtons();
+
+                langEnBtn.addEventListener('click', () => {
+                    this.changeLanguage('en');
+                });
+
+                langPtBtn.addEventListener('click', () => {
+                    this.changeLanguage('pt');
+                });
+
+                this.updateContent();
+            }
+
+            updateLanguageButtons() {
+                const langEnBtn = document.getElementById('lang-en');
+                const langPtBtn = document.getElementById('lang-pt');
+
+                langEnBtn.classList.toggle('active', this.currentLanguage === 'en');
+                langPtBtn.classList.toggle('active', this.currentLanguage === 'pt');
+            }
+
+            changeLanguage(lang) {
+                this.currentLanguage = lang;
+                this.updateLanguageButtons();
+                this.updateContent();
+                this.renderProjects();
+
+                setTimeout(() => {
+                    this.initTypingEffect();
+                }, 100);
+            } updateContent() {
+                const elements = document.querySelectorAll('[data-i18n]');
+                elements.forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    const translation = this.getTranslation(key);
+                    if (translation) {
+                        if (element.tagName === 'TITLE') {
+                            element.textContent = translation;
+                        } else {
+                            element.innerHTML = translation;
+                        }
+                    }
+                });
+            }
+
+            getTranslation(key) {
+                const keys = key.split('.');
+                let result = translations[this.currentLanguage];
+
+                for (const k of keys) {
+                    if (result && result[k]) {
+                        result = result[k];
+                    } else {
+                        return null;
+                    }
+                }
+
+                return result;
             }
 
             initTypingEffect() {
                 const element = document.getElementById('typing-header');
+                const t = translations[this.currentLanguage].typing;
                 const messages = [
-                    { text: 'Sistema iniciado...', delay: 800 },
-                    { text: 'Verificando credenciais...', delay: 600 },
-                    { text: 'Acesso autorizado ✓', delay: 800 },
+                    { text: t.systemStarted, delay: 800 },
+                    { text: t.checkingCredentials, delay: 600 },
+                    { text: t.accessGranted, delay: 800 },
                     { text: '', delay: 300 },
-                    { text: 'Olá! Eu sou Leonardo Vinicius', delay: 0 }
+                    { text: t.greeting, delay: 0 }
                 ];
 
                 let messageIndex = 0;
@@ -556,45 +861,51 @@
 
             renderProjects() {
                 const container = document.getElementById('projects-container');
+                const t = translations[this.currentLanguage].projects;
+
                 const projects = [
                     {
-                        name: "Bonibot",
+                        name: this.currentLanguage === 'en' ? "BoniBot Discord" : "Bonibot",
                         icon: "bot",
-                        description: "Bot completo para Discord com sistema de música e comandos personalizados. Auto-hospedado com uptime 24/7 e integração com Spotify.",
+                        description: this.currentLanguage === 'en' ? "Complete Discord bot with music system, custom commands and web dashboard. Self-hosted with 24/7 uptime and Spotify integration." : "Bot completo para Discord com sistema de música e comandos personalizados. Auto-hospedado com uptime 24/7 e integração com Spotify.",
                         tags: ["Node.js", "Discord.js", "Express", "PostgreSQL", "ffmpeg"],
                         link: "#",
-                        status: "Ativo"
+                        status: this.currentLanguage === 'en' ? "Active" : "Ativo"
                     },
                     {
-                        name: "Landing Page (HMC)",
+                        name: this.currentLanguage === 'en' ? "Landing Page (HMC)" : "Landing Page (HMC)",
                         icon: "layout",
-                        description: "Landing page em homenagem a carreira de Hamilton Machado Dias no kickboxing.",
+                        description: this.currentLanguage === 'en' ? "Landing page in tribute to Hamilton Machado Dias' kickboxing career." : "Landing page em homenagem a carreira de Hamilton Machado Dias no kickboxing.",
                         tags: ["HTML", "CSS", "JavaScript"],
                         link: "https://hmckickboxingbio.netlify.app",
-                        status: "Ativo"
+                        status: this.currentLanguage === 'en' ? "Active" : "Ativo"
                     },
                     {
-                        name: "Landing Page (FPV)",
+                        name: this.currentLanguage === 'en' ? "Landing Page (FPV)" : "Landing Page (FPV)",
                         icon: "layout",
-                        description: "Landing page para a equipe de Freitas Provensi Advocacia, com informações sobre serviços, equipe e contato.",
+                        description: this.currentLanguage === 'en' ? "Landing page for Freitas Provensi Law Firm, with information about services, team and contact." : "Landing page para a equipe de Freitas Provensi Advocacia, com informações sobre serviços, equipe e contato.",
                         tags: ["HTML", "CSS", "JavaScript"],
                         link: "https://freitasprovensi.netlify.app/",
-                        status: "Em expansão"
+                        status: this.currentLanguage === 'en' ? "Expanding" : "Em expansão"
                     },
                     {
                         name: "ATIC",
                         icon: "truck",
-                        description: "Aplicativo que conecta serviços e caminhoneiros, facilitando a comunicação e o gerenciamento de cargas, cuidando de toda a logística envolvida, incluindo rotas, prazos e pagamentos.",
+                        description: this.currentLanguage === 'en' ? "Application that connects services and truck drivers, facilitating communication and cargo management, handling all involved logistics, including routes, deadlines and payments." : "Aplicativo que conecta serviços e caminhoneiros, facilitando a comunicação e o gerenciamento de cargas, cuidando de toda a logística envolvida, incluindo rotas, prazos e pagamentos.",
                         tags: ["React", "React Native", "NestJS", "PostgreSQL"],
                         link: "#",
-                        status: "Em desenvolvimento"
+                        status: this.currentLanguage === 'en' ? "In Development" : "Em desenvolvimento"
                     }
                 ];
 
                 const statusColors = {
+                    'Active': 'text-green-400',
                     'Ativo': 'text-green-400',
+                    'Expanding': 'text-blue-400',
                     'Em expansão': 'text-blue-400',
+                    'Finished': 'text-gray-400',
                     'Finalizado': 'text-gray-400',
+                    'In Development': 'text-yellow-400',
                     'Em desenvolvimento': 'text-yellow-400'
                 };
 
@@ -603,6 +914,9 @@
                     const tagsHTML = project.tags.map(tag =>
                         `<span class="bg-green-900/20 text-green-300 text-xs font-medium px-2 py-1 rounded border border-green-700/30">${tag}</span>`
                     ).join('');
+
+                    const viewProjectText = this.currentLanguage === 'en' ? 'View project' : 'Ver projeto';
+                    const privateText = this.currentLanguage === 'en' ? 'Private' : 'Privado';
 
                     return `
                         <div class="interactive-card p-6 rounded-lg h-full flex flex-col">
@@ -622,11 +936,11 @@
                                     ${project.link !== '#' ?
                             `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-600/20 hover:bg-green-600/30 border border-green-500/40 hover:border-green-500/60 text-green-400 hover:text-green-300 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105">
                                             <i data-lucide="external-link" class="w-3 h-3"></i>
-                                            Ver projeto
+                                            ${viewProjectText}
                                         </a>` :
                             `<button disabled class="inline-flex items-center gap-2 bg-gray-600/20 border border-gray-500/40 text-gray-500 px-4 py-2 rounded-lg text-sm font-medium cursor-not-allowed">
                                             <i data-lucide="lock" class="w-3 h-3"></i>
-                                            Privado
+                                            ${privateText}
                                         </button>`
                         }
                                 </div>
