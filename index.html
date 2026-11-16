@@ -1,351 +1,129 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="title">Portfolio // Leonardo Vinicius Sanchez Dias</title>
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-    <link rel="icon" type="image/svg+xml" href="./favicon-16.svg" sizes="16x16">
-    <link rel="apple-touch-icon" href="./favicon.svg" sizes="180x180">
-    <link rel="shortcut icon" href="./favicon.svg">
-    <meta name="theme-color" content="#00d26a">
-    <meta name="msapplication-TileColor" content="#0d1117">
-    <meta name="msapplication-TileImage" content="./favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Portfolio // Leonardo Vinicius Sanchez Dias</title>
+    <meta name="description" content="Portfolio de Leonardo Vinicius Sanchez Dias, Desenvolvedor Full-stack.">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <meta name="theme-color" content="#070b09">
+    <meta name="msapplication-TileColor" content="#070b09">
+    <meta name="msapplication-TileImage" content="./icon-192.png">
     <link rel="manifest" href="./manifest.json">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
-<body class="p-4 sm:p-8">
+<body>
+<canvas id="rain" aria-hidden="true"></canvas>
 
-    <!-- Desktop Language Switch -->
-    <div class="language-switch-desktop">
-        <button id="lang-en" class="active" title="English">
-            🇺🇸 EN
-        </button>
-        <button id="lang-pt" title="Português">
-            🇧🇷 PT
-        </button>
+<div class="shell">
+  <aside class="rail">
+    <div class="id">
+      <div class="ps"><b>leonzv@portfolio</b>:~$</div>
+      <h1>Leonardo Vinicius<br>Sanchez Dias</h1>
+      <div class="role" data-en="Full-stack Developer" data-pt="Desenvolvedor Full-stack">Full-stack Developer</div>
+      <div class="live"><span class="dot"></span><span><span data-en="online @" data-pt="online @">online @</span> Vertti Tecnologia</span></div>
     </div>
-
-    <!-- Mobile Drawer Overlay -->
-    <div class="mobile-drawer-overlay" id="drawer-overlay"></div>
-
-    <!-- Mobile Drawer -->
-    <div class="mobile-drawer" id="mobile-drawer">
-        <div class="drawer-header">
-            <div class="flex items-center gap-2">
-                <i data-lucide="terminal" class="w-4 h-4 text-green-400"></i>
-                <span class="text-glow font-medium">Menu</span>
-            </div>
-            <button class="drawer-close" id="drawer-close">
-                <i data-lucide="x" class="w-4 h-4"></i>
-            </button>
-        </div>
-
-        <nav class="drawer-nav">
-            <a href="#whois" data-i18n="nav.about">./about</a>
-            <a href="#arsenal" data-i18n="nav.skills">./skills</a>
-            <a href="#projetos" data-i18n="nav.projects">./projects</a>
-            <a href="#experiencia" data-i18n="nav.experience">./experience</a>
-            <a href="#contato" data-i18n="nav.contact">./contact</a>
-        </nav>
-
-        <div class="language-switch">
-            <div class="language-switch-title" data-i18n="language.title">Language / Idioma</div>
-            <div class="language-switch-buttons">
-                <button id="lang-en-mobile" class="active" title="English">
-                    🇺🇸 EN
-                </button>
-                <button id="lang-pt-mobile" title="Português">
-                    🇧🇷 PT
-                </button>
-            </div>
-        </div>
+    <nav class="tree" aria-label="Sections">
+      <div class="cap">~/portfolio</div>
+      <a href="#about" data-s="about"><i>├─</i><span data-en="about.md" data-pt="sobre.md">about.md</span></a>
+      <a href="#skills" data-s="skills"><i>├─</i><span data-en="skills/" data-pt="habilidades/">skills/</span></a>
+      <a href="#projects" data-s="projects"><i>├─</i><span data-en="projects/" data-pt="projetos/">projects/</span></a>
+      <a href="#experience" data-s="experience"><i>├─</i><span data-en="experience.log" data-pt="experiencia.log">experience.log</span></a>
+      <a href="#contact" data-s="contact"><i>└─</i><span data-en="contact.sh" data-pt="contato.sh">contact.sh</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="b-en" aria-pressed="true">EN</button>
+      <button type="button" id="b-pt" aria-pressed="false">PT</button>
     </div>
-
-    <canvas id="matrix-bg"></canvas>
-    <div class="scanline-overlay"></div>
-
-    <div class="terminal-window max-w-5xl mx-auto p-6 md:p-8">
-
-        <nav class="nav-terminal sticky top-4 z-10 mb-8 p-4 flex items-center justify-between flex-wrap">
-            <div class="flex items-center gap-2">
-                <i data-lucide="terminal" class="w-4 h-4"></i>
-                <span class="text-glow font-medium">user@leonzv.dev:</span>
-                <span class="text-gray-400">~</span>
-                <span class="text-glow">$</span>
-            </div>
-            <div class="flex gap-4 text-sm font-medium flex-wrap justify-center">
-                <a href="#whois" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
-                    data-i18n="nav.about">./about</a>
-                <a href="#arsenal" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
-                    data-i18n="nav.skills">./skills</a>
-                <a href="#projetos" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
-                    data-i18n="nav.projects">./projects</a>
-                <a href="#experiencia" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
-                    data-i18n="nav.experience">./experience</a>
-                <a href="#contato" class="interactive-link px-3 py-1 rounded hover:bg-green-500/20 transition-all"
-                    data-i18n="nav.contact">./contact</a>
-            </div>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <i data-lucide="menu" class="w-5 h-5"></i>
-            </button>
-        </nav>
-
-        <header class="mb-12">
-            <div class="bg-black/60 border border-green-500/30 rounded-lg p-6 font-mono">
-                <div class="flex items-center gap-2 mb-4 border-b border-green-500/20 pb-3">
-                    <div class="flex gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
-                    </div>
-                    <span class="text-sm text-gray-400 ml-4">terminal — leonzv@portfolio:~</span>
-                    <i data-lucide="shield-check" class="w-4 h-4"></i>
-                </div>
-
-                <div class="space-y-2">
-                    <div class="text-green-400 text-sm">$ whoami</div>
-                    <div id="typing-header"
-                        class="text-lg md:text-2xl font-bold text-glow min-h-[100px] md:min-h-[80px] leading-tight pl-4">
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <section id="whois" class="mb-16 fade-in-section">
-                <div class="flex items-center gap-3 mb-6">
-                    <i data-lucide="user-search" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow" data-i18n="about.title">ABOUT ME</h2>
-                </div>
-                <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                    <p class="text-gray-300 leading-relaxed mb-4" data-i18n="about.description1">
-                        Since childhood, I've always been involved with technology, solving problems and creating
-                        solutions,
-                        for myself or for others. This way, I learned that I enjoy solving problems and helping others,
-                        consequently inserting myself into the IT world.
-                    </p>
-                    <p class="text-gray-300 leading-relaxed mb-4" data-i18n="about.description2">
-                        Full-Stack Developer with over 5 years of experience creating robust web and mobile solutions.
-                        robustas.
-                        Especializado em JavaScript/TypeScript, React, Node.js e Python (Django).
-                    </p>
-                    <p class="text-gray-300 leading-relaxed" data-i18n="about.description3">
-                        Currently working at <span class="text-green-400 font-semibold">ATM
-                            Outsourcing/EVS</span>, where I develop
-                        systems for electric vehicle chargers and develop a mobile device management system (MDM).
-                    </p>
-                </div>
-            </section>
-
-            <section id="arsenal" class="mb-16 fade-in-section">
-                <div class="flex items-center gap-3 mb-6">
-                    <i data-lucide="cpu" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow" data-i18n="skills.title">TECHNICAL SKILLS</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="interactive-card p-6 rounded-lg">
-                        <div class="flex items-center gap-2 mb-3">
-                            <i data-lucide="code" class="w-4 h-4"></i>
-                            <h3 class="font-bold text-lg" data-i18n="skills.frontend">Frontend</h3>
-                        </div>
-                        <ul class="text-gray-300 space-y-2">
-                            <li><span class="text-green-400">•</span> JavaScript ES6+, TypeScript</li>
-                            <li><span class="text-green-400">•</span> React</li>
-                            <li><span class="text-green-400">•</span> HTML5, CSS3, Tailwind CSS</li>
-                            <li><span class="text-green-400">•</span> Mobile: React Native, Flutter</li>
-                        </ul>
-                    </div>
-
-                    <div class="interactive-card p-6 rounded-lg">
-                        <div class="flex items-center gap-2 mb-3">
-                            <i data-lucide="server" class="w-4 h-4"></i>
-                            <h3 class="font-bold text-lg" data-i18n="skills.backend">Backend</h3>
-                        </div>
-                        <ul class="text-gray-300 space-y-2">
-                            <li><span class="text-green-400">•</span> Node.js, Express</li>
-                            <li><span class="text-green-400">•</span> Python, Django, FastAPI</li>
-                            <li><span class="text-green-400">•</span> PostgreSQL, MongoDB, MySQL/MariaDB </li>
-                            <li><span class="text-green-400">•</span> REST APIs </li>
-                        </ul>
-                    </div>
-
-                    <div class="interactive-card p-6 rounded-lg">
-                        <div class="flex items-center gap-2 mb-3">
-                            <i data-lucide="terminal" class="w-4 h-4"></i>
-                            <h3 class="font-bold text-lg" data-i18n="skills.devops">DevOps & Tools</h3>
-                        </div>
-                        <ul class="text-gray-300 space-y-2">
-                            <li><span class="text-green-400">•</span> Docker, Git/GitHub</li>
-                            <li><span class="text-green-400">•</span> Linux, Windows </li>
-                            <li><span class="text-green-400">•</span> Nginx, Apache</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projetos" class="mb-16 fade-in-section">
-                <div class="flex items-center gap-3 mb-6">
-                    <i data-lucide="folder-code" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow" data-i18n="projects.title">DEVELOPED PROJECTS</h2>
-                </div>
-                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                </div>
-            </section>
-
-            <section id="experiencia" class="mb-16 fade-in-section">
-                <div class="flex items-center gap-3 mb-6">
-                    <i data-lucide="briefcase" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow" data-i18n="experience.title">PROFESSIONAL EXPERIENCE</h2>
-                </div>
-                <div class="relative border-l-2 border-green-700/50 pl-8 space-y-12">
-                    <div class="relative">
-                        <div
-                            class="absolute -left-[41px] top-2 h-6 w-6 bg-green-400 rounded-full border-4 border-black flex items-center justify-center">
-                            <div class="h-2 w-2 bg-black rounded-full animate-pulse"></div>
-                        </div>
-                        <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                            <p class="text-sm text-green-400 font-semibold mb-2" data-i18n="experience.periodOsklen">
-                                Jun/23 - Present</p>
-                            <h3 class="font-bold text-lg mb-3 text-glow" data-i18n="experience.titleOsklen">Osklen,
-                                Remote — Developer & DevOps (Freelancer)</h3>
-                            <ul class="text-gray-300 space-y-2">
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.descOsklen.item1">Development of a platform for product
-                                        and label research/inspection.</span></li>
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.descOsklen.item2">Maintenance of website, servers, and
-                                        database.</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="relative">
-                        <div
-                            class="absolute -left-[41px] top-2 h-6 w-6 bg-green-400 rounded-full border-4 border-black flex items-center justify-center">
-                            <div class="h-2 w-2 bg-black rounded-full"></div>
-                        </div>
-                        <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                            <p class="text-sm text-green-400 font-semibold mb-2" data-i18n="experience.period1">May/23 -
-                                Present</p>
-                            <h3 class="font-bold text-lg mb-3 text-glow" data-i18n="experience.title1">Full Stack
-                                Developer @ ATM Outsourcing/EVS, Remote</h3>
-                            <ul class="text-gray-300 space-y-2">
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc1.item1">Maintenance and modernization of internal
-                                        administrative portal</span></li>
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc1.item2">Feature development for electric vehicle
-                                        chargers</span></li>
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc1.item3">Integration of monitoring and control
-                                        systems</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="relative">
-                        <div
-                            class="absolute -left-[41px] top-2 h-6 w-6 bg-green-400 rounded-full border-4 border-black flex items-center justify-center">
-                            <div class="h-2 w-2 bg-black rounded-full"></div>
-                        </div>
-                        <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                            <p class="text-sm text-green-400 font-semibold mb-2" data-i18n="experience.period2">Jul/21 -
-                                Mar/23</p>
-                            <h3 class="font-bold text-lg mb-3 text-glow" data-i18n="experience.title2">Full Stack
-                                Developer @ Mindtek, Remote</h3>
-                            <ul class="text-gray-300 space-y-2">
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc2.item1">Development of web platform for supplier
-                                        analysis</span></li>
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc2.item2">Implementation of product search and
-                                        inspection system</span></li>
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc2.item3">Server and infrastructure maintenance</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="relative">
-                        <div
-                            class="absolute -left-[41px] top-2 h-6 w-6 bg-green-400 rounded-full border-4 border-black flex items-center justify-center">
-                            <div class="h-2 w-2 bg-black rounded-full"></div>
-                        </div>
-                        <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                            <p class="text-sm text-green-400 font-semibold mb-2" data-i18n="experience.period3">Feb/21 -
-                                Jun/21</p>
-                            <h3 class="font-bold text-lg mb-3 text-glow" data-i18n="experience.title3">Mobile/Full Stack
-                                Developer @ Rupture Software, Remote</h3>
-                            <ul class="text-gray-300 space-y-2">
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc3.item1">Mobile application development</span></li>
-                                <li><span class="text-green-400">▸</span> <span
-                                        data-i18n="experience.desc3.item2">Creation of responsive promotional
-                                        websites</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contato" class="mb-12 fade-in-section">
-                <div class="flex items-center gap-3 mb-6">
-                    <i data-lucide="mail" class="w-5 h-5"></i>
-                    <h2 class="text-xl font-bold text-glow" data-i18n="contact.title">COMMUNICATION CHANNELS</h2>
-                </div>
-                <div class="bg-black/40 border border-green-500/20 rounded-lg p-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a href="mailto:leowfce@gmail.com"
-                            class="interactive-link border border-green-700 px-6 py-3 rounded-md flex items-center gap-3 hover:scale-105 transition-transform">
-                            <i data-lucide="mail" class="w-4 h-4"></i>
-                            <span>leowfce@gmail.com</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/leonardo-vinicius-sanchez-dias-a19b52185/" target="_blank"
-                            class="interactive-link border border-green-700 px-6 py-3 rounded-md flex items-center gap-3 hover:scale-105 transition-transform">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i>
-                            <span>LinkedIn Profile</span>
-                        </a>
-                        <a href="https://github.com/leonzv" target="_blank"
-                            class="interactive-link border border-green-700 px-6 py-3 rounded-md flex items-center gap-3 hover:scale-105 transition-transform">
-                            <i data-lucide="github" class="w-4 h-4"></i>
-                            <span>GitHub</span>
-                        </a>
-                        <a href="tel:+5511995989089"
-                            class="interactive-link border border-green-700 px-6 py-3 rounded-md flex items-center gap-3 hover:scale-105 transition-transform">
-                            <i data-lucide="phone" class="w-4 h-4"></i>
-                            <span>+55 11 99598-9089</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="text-center text-gray-500 mt-16 fade-in-section border-t border-green-500/20 pt-8">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <i data-lucide="terminal" class="w-4 h-4"></i>
-                <p class="font-mono" data-i18n="footer.transmission">TRANSMISSION COMPLETE</p>
-            </div>
-            <p class="text-xs" data-i18n="footer.copyright">Leonardo Vinicius Sanchez Dias © 2025 | All rights reserved
-            </p>
-            <p class="text-xs mt-2 text-green-400" data-i18n="footer.system">Operating System: Portfolio OS v2.0 |
-                Uptime: ∞</p>
-        </footer>
+    <div class="rail-links">
+      <a href="https://github.com/leonzv" target="_blank" rel="noopener noreferrer">↗ github.com/leonzv</a>
+      <a href="https://www.linkedin.com/in/leonardo-vinicius-sanchez-dias-a19b52185/" target="_blank" rel="noopener noreferrer">↗ linkedin</a>
     </div>
+  </aside>
 
-    <script type="module" src="./js/portfolio.js"></script>
+  <main>
+    <section class="hero" aria-label="Intro">
+      <div class="hero-bar"><i></i><i></i><i></i><span>terminal — leonzv@portfolio:~</span></div>
+      <div class="hero-body">
+        <ul class="boot">
+          <li><b>[ ok ]</b> <span data-en="system started" data-pt="sistema iniciado">system started</span></li>
+          <li><b>[ ok ]</b> <span data-en="checking credentials" data-pt="verificando credenciais">checking credentials</span></li>
+          <li><b>[ ok ]</b> <span data-en="access granted" data-pt="acesso autorizado">access granted</span></li>
+        </ul>
+        <div style="color:var(--dim);font-size:12.5px;margin-bottom:6px">$ whoami</div>
+        <h2><span data-en="Hello! I'm Leonardo Vinicius" data-pt="Olá! Eu sou Leonardo Vinicius">Hello! I'm Leonardo Vinicius</span><span class="caret" aria-hidden="true"></span></h2>
+        <dl class="kv">
+          <dt>role</dt><dd data-en="Full-stack Developer" data-pt="Desenvolvedor Full-stack">Full-stack Developer</dd>
+          <dt>stack</dt><dd>TypeScript · React · Node.js · Python</dd>
+          <dt>now</dt><dd><span class="now">●</span> Vertti Tecnologia <span style="color:var(--dim)" data-en="(since Sep 2025)" data-pt="(desde set/2025)">(since Sep 2025)</span></dd>
+          <dt>exp</dt><dd data-en="7+ years shipping web and mobile" data-pt="7+ anos entregando web e mobile">7+ years shipping web and mobile</dd>
+          <dt>domain</dt><dd data-en="freight logistics software (road and rail)" data-pt="software de logística de cargas (rodovias e ferrovias)">freight logistics software (road and rail)</dd>
+        </dl>
+      </div>
+    </section>
 
+    <section id="about" aria-labelledby="h-about">
+      <h2 class="cmd" id="h-about"><span class="p">$</span><span class="c">cat</span><span class="a" data-en="about.md" data-pt="sobre.md">about.md</span></h2>
+      <div class="prose">
+        <p data-en="Since childhood, I've always been involved with technology, solving problems and creating solutions, for myself or for others. That is how I learned I enjoy solving problems and helping people, and how I ended up in IT."
+           data-pt="Desde pequeno, sempre me envolvi com tecnologia, resolvendo problemas e criando soluções, para mim ou para os outros. Foi assim que aprendi que gosto de resolver problemas e ajudar, e que acabei entrando no mundo da TI.">Since childhood, I've always been involved with technology, solving problems and creating solutions, for myself or for others. That is how I learned I enjoy solving problems and helping people, and how I ended up in IT.</p>
+        <p data-en="Full-stack Developer with over 7 years of experience building robust web and mobile solutions. Specialized in <em>JavaScript/TypeScript</em>, <em>React</em>, <em>Node.js</em> and <em>Python (Django)</em>."
+           data-pt="Desenvolvedor Full-stack com mais de 7 anos de experiência criando soluções web e mobile robustas. Especializado em <em>JavaScript/TypeScript</em>, <em>React</em>, <em>Node.js</em> e <em>Python (Django)</em>.">Full-stack Developer with over 7 years of experience building robust web and mobile solutions. Specialized in <em>JavaScript/TypeScript</em>, <em>React</em>, <em>Node.js</em> and <em>Python (Django)</em>.</p>
+        <p data-en="Currently a Full-stack Developer at <em>Vertti Tecnologia</em>. Before that, I built systems for electric vehicle chargers and a mobile device management (MDM) platform at ATM Outsourcing/EVS."
+           data-pt="Atualmente Desenvolvedor Full-stack na <em>Vertti Tecnologia</em>. Antes, desenvolvi sistemas para carregadores de veículos elétricos e uma plataforma de gerenciamento de dispositivos móveis (MDM) na ATM Outsourcing/EVS.">Currently a Full-stack Developer at <em>Vertti Tecnologia</em>. Before that, I built systems for electric vehicle chargers and a mobile device management (MDM) platform at ATM Outsourcing/EVS.</p>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="h-skills">
+      <h2 class="cmd" id="h-skills"><span class="p">$</span><span class="c">ls</span><span class="a">-l</span><span class="a" data-en="skills/" data-pt="habilidades/">skills/</span></h2>
+      <div class="skills">
+        <div class="row"><div class="k">frontend/</div><div class="chips"><span class="chip">JavaScript ES6+</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Tailwind CSS</span></div></div>
+        <div class="row"><div class="k">mobile/</div><div class="chips"><span class="chip">React Native</span><span class="chip">Flutter</span><span class="chip">Firebase</span></div></div>
+        <div class="row"><div class="k">backend/</div><div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Python</span><span class="chip">Django</span><span class="chip">FastAPI</span><span class="chip">REST APIs</span></div></div>
+        <div class="row"><div class="k">data/</div><div class="chips"><span class="chip">SQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">MySQL / MariaDB</span></div></div>
+        <div class="row"><div class="k">devops/</div><div class="chips"><span class="chip">Docker</span><span class="chip">Git / GitHub</span><span class="chip">Linux</span><span class="chip">Windows</span><span class="chip">Nginx</span><span class="chip">Apache</span></div></div>
+        <div class="row"><div class="k">network-sec/</div><div class="chips"><span class="chip" data-en="Networking" data-pt="Redes">Networking</span><span class="chip">Firewall</span><span class="chip">VPN</span></div></div>
+        <div class="row"><div class="k">ai-agents/</div><div class="chips"><span class="chip" data-en="Agent orchestration" data-pt="Orquestração de agentes">Agent orchestration</span><span class="chip">MCP</span></div></div>
+        <div class="row"><div class="k">mindset/</div><div class="chips"><span class="chip" data-en="Critical &amp; logical thinking" data-pt="Pensamento crítico e lógico">Critical &amp; logical thinking</span><span class="chip" data-en="Problem solving" data-pt="Resolução de problemas">Problem solving</span></div></div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="h-projects">
+      <h2 class="cmd" id="h-projects"><span class="p">$</span><span class="c">ls</span><span class="a">-la</span><span class="a" data-en="projects/" data-pt="projetos/">projects/</span></h2>
+      <div class="projects" id="projects-list"></div>
+    </section>
+
+    <section id="experience" aria-labelledby="h-exp">
+      <h2 class="cmd" id="h-exp"><span class="p">$</span><span class="c">git log</span><span class="a">--career</span></h2>
+      <div class="gantt" id="gantt" role="img" aria-label="Career timeline 2021 to 2026"></div>
+      <ol class="log" id="log"></ol>
+    </section>
+
+    <section id="contact" aria-labelledby="h-contact">
+      <h2 class="cmd" id="h-contact"><span class="p">$</span><span class="c">./contact.sh</span><span class="a">--all</span></h2>
+      <div class="channels">
+        <div class="ch"><div class="k">email</div><div class="v"><a href="mailto:leonzvwork@gmail.com" id="mail">leonzvwork@gmail.com</a></div><button type="button" class="copy" data-copy="leonzvwork@gmail.com" data-en="copy" data-pt="copiar">copy</button></div>
+        <div class="ch"><div class="k">linkedin</div><div class="v"><a href="https://www.linkedin.com/in/leonardo-vinicius-sanchez-dias-a19b52185/" target="_blank" rel="noopener noreferrer">in/leonardo-vinicius-sanchez-dias-a19b52185</a></div><span></span></div>
+        <div class="ch"><div class="k">github</div><div class="v"><a href="https://github.com/leonzv" target="_blank" rel="noopener noreferrer">github.com/leonzv</a></div><span></span></div>
+      </div>
+    </section>
+
+    <footer>
+      <span><span class="ok">●</span> <span data-en="TRANSMISSION COMPLETE" data-pt="TRANSMISSÃO FINALIZADA">TRANSMISSION COMPLETE</span></span>
+      <span>Leonardo Vinicius Sanchez Dias © 2026</span>
+      <span>Portfolio OS v2.0 | Uptime: ∞</span>
+    </footer>
+  </main>
+</div>
+
+    <script src="./js/portfolio.js" defer></script>
 </body>
 
 </html>
