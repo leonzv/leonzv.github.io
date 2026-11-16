@@ -4,22 +4,30 @@
   "description": "Portfolio profissional de Leonardo Vinicius Sanchez Dias - Desenvolvedor Full Stack",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d1117",
-  "theme_color": "#00d26a",
+  "background_color": "#070b09",
+  "theme_color": "#070b09",
   "orientation": "portrait-primary",
-  "categories": ["portfolio", "professional", "developer"],
+  "categories": [
+    "portfolio",
+    "professional",
+    "developer"
+  ],
   "lang": "pt-BR",
   "icons": [
     {
       "src": "favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/svg+xml"
     },
     {
-      "src": "favicon-16.svg",
-      "sizes": "16x16",
-      "type": "image/svg+xml"
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
