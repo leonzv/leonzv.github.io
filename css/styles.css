@@ -183,6 +183,18 @@ footer .ok { color: var(--accent); }
   .ch { grid-template-columns: minmax(0, 1fr) auto; }
   .ch .k { grid-column: 1 / -1; }
 }
+.prose[data-en] { margin-bottom: 18px }
+.method { list-style: none; margin: 0 0 16px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line-hi); background: var(--panel); }
+.method li { padding: 11px 14px; font-size: 12.5px; }
+.method li + li { border-left: 1px solid var(--line); }
+.method b { display: block; color: var(--accent); font-size: 11px; letter-spacing: .1em; font-weight: 500; }
+@media (max-width: 760px) {
+  .method { grid-template-columns: minmax(0, 1fr); }
+  .method li + li { border-left: 0; border-top: 1px solid var(--line); }
+}
+.probs .row { grid-template-columns: 190px minmax(0, 1fr); }
+.probs .k { color: var(--cyan); }
+@media (max-width: 640px) { .probs .row { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .boot li, .dot, .caret { animation: none; }
