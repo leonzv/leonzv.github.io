@@ -59,7 +59,7 @@
       desc: { en: 'Landing page for Freitas Provensi Law Firm, with information about services, team and contact.',
               pt: 'Landing page para a equipe de Freitas Provensi Advocacia, com informações sobre serviços, equipe e contato.' },
       tags: ['HTML', 'CSS', 'JavaScript'] },
-    { name: 'ATIC', st: 'dead', link: null,
+    { name: 'ATIC', st: 'frozen', link: null,
       desc: { en: 'Application that connects services and truck drivers, facilitating communication and cargo management, handling all involved logistics, including routes, deadlines and payments.',
               pt: 'Aplicativo que conecta serviços e caminhoneiros, facilitando a comunicação e o gerenciamento de cargas, cuidando de toda a logística envolvida, incluindo rotas, prazos e pagamentos.' },
       tags: ['React', 'React Native', 'NestJS', 'PostgreSQL'] }
@@ -67,7 +67,7 @@
   var STATUS = {
     ok:   { en: 'active', pt: 'ativo' },
     grow: { en: 'expanding', pt: 'em expansão' },
-    dead: { en: 'discontinued', pt: 'descontinuado' }
+    frozen: { en: 'frozen', pt: 'congelado' }
   };
 
   var lang = 'en';
@@ -92,10 +92,9 @@
       var chips = p.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('');
       var act;
       if (p.link) act = '<a class="act" href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + (lang === 'pt' ? 'ver projeto ↗' : 'view project ↗') + '</a>';
-      else if (p.st === 'dead') act = '<span class="act priv">' + (lang === 'pt' ? 'arquivado' : 'archived') + '</span>';
       else act = '<span class="act priv">' + (lang === 'pt' ? '🔒 privado' : '🔒 private') + '</span>';
-      var note = p.st === 'dead' ? '<div class="note">' + (lang === 'pt' ? '// projeto descontinuado, sem manutenção' : '// project discontinued, no longer maintained') + '</div>' : '';
-      return '<article class="proj' + (p.st === 'dead' ? ' dead' : '') + '"><div>' +
+      var note = p.st === 'frozen' ? '<div class="note">' + (lang === 'pt' ? '// congelado para priorizar outros projetos' : '// frozen to prioritize other projects') + '</div>' : '';
+      return '<article class="proj' + (p.st === 'frozen' ? ' frozen' : '') + '"><div>' +
         '<h3><span class="nm">' + esc(p.name) + '</span><span class="badge ' + p.st + '">[ ' + STATUS[p.st][lang] + ' ]</span></h3>' +
         '<p>' + esc(p.desc[lang]) + '</p><div class="chips">' + chips + '</div>' + note + '</div>' + act + '</article>';
     }).join('');
